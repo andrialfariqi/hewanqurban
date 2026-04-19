@@ -19,8 +19,89 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgb(59 130 246 / 0.2);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatAttention {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.75s ease-out both;
+}
+
+.stagger-fade > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.65s ease-out forwards;
+}
+
+.stagger-fade > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.stagger-fade > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.stagger-fade > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.stagger-fade > *:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.stagger-fade > *:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+.float-attention {
+  animation: floatAttention 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .stagger-fade > *,
+  .float-attention {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
